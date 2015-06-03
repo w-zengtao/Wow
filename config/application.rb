@@ -31,5 +31,8 @@ module Wow
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    def pepper
+      pepper = "d142367154e5beacca404b1a6a4f8bc52c6fdcfa3ccc3cf8eb49f3458a688ee6ac3b9fae488432a3bfca863b8a90008368a9f3a3dfbe5a962e64b6ab8f3a3a1a"
+    end
   end
 end
