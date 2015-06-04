@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   before_save :ensure_auth_token
   before_save :ensure_encrypted_password
 
-  
+  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: EMAIL_REGEX }
   
   class << self
     def bcrypt(password)
