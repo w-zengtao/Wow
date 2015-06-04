@@ -1,6 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
 
   respond_to :json
+  #TODO 具体返回的参数还是要调整  暂时仅保证一个可用版本
 
   before_action :set_user, only: [:show, :update, :destroy]
 
