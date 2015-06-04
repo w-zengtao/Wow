@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
 
+  #TODO 头像 还有 nickname
+
   before_save :ensure_auth_token
   before_save :ensure_encrypted_password
 
+  
   
   class << self
     def bcrypt(password)
