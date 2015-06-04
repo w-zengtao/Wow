@@ -1,2 +1,2 @@
-class Api::V1::UserTokensController < ApplicationController
+class Api::V1::UserTokensController < Api::V1::BaseController
 end
