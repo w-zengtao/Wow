@@ -3,8 +3,13 @@ Rails.application.routes.draw do
 
   namespace :api do 
     namespace :v1 do 
-      resources :users, only: [:index, :show, :create, :update, :destroy]
+      resources :users, only: [:index, :show, :create, :update, :destroy] do 
+        member do 
+
+        end
+      end
       resources :user_tokens, only: [:create, :destroy]
+      resources :devices, only: [:index, :show, :create, :update, :destroy]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
