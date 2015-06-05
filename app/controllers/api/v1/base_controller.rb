@@ -10,7 +10,21 @@ class Api::V1::BaseController < ApplicationController
     user = token && User.find_by_auth_token(token)
 
     if user
-      sign_in user, store: false
+      sign_in user
+    else
+      render json: { error: "you'd have a auth_token", status: 401 }
     end
+  end
+
+  def sign_in(user)
+    self.current_user = user
+  end
+
+  def current_user=(user)
+    @current_user = user
+  end
+
+  def current_user
+    @current_user
   end
 end

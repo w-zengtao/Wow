@@ -30,7 +30,6 @@ RSpec.describe Api::V1::UserTokensController, type: :controller do
       
       parsed_response = JSON.parse(response.body)
 
-      puts parsed_response
       expect(parsed_response["user_token"]["auth_token"]).to eq(user.auth_token)
     end
   

@@ -48,3 +48,15 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 end
+
+def sign_in(user)
+  self.current_user = user
+end
+
+def current_user=(user)
+  @current_user = user
+end
+
+def current_user
+  @current_user
+end

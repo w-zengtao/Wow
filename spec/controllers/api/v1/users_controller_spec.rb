@@ -63,25 +63,4 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       expect(User.count).to eq(count - 1)
     end
   end
-
-  describe "POST 'add_device'" do 
-    user = FactoryGirl.create(:user) 
-
-    it "should returns error without device_token" do 
-      post :add_device
-        # , { device: { device_token: "", os: "os", version: "version", id: user.id } }
-
-        # parsed_response = JSON.parse(response.body)
-
-        # expect(parsed_response['error']).to eq('device_token must be post')
-    end
-
-      it "should increase Device's count " do 
-
-      end
-
-      it "should increase user's Device count column" do 
-
-      end
-    end
 end
