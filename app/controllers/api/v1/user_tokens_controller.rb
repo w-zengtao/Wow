@@ -14,4 +14,8 @@ class Api::V1::UserTokensController < Api::V1::BaseController
     #TODO 要登录用户
     render json: { user_token: { auth_token: user.auth_token, id: user.id } }
   end
+
+  def destroy
+    #TODO 
+  end
 end
