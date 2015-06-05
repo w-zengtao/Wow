@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: EMAIL_REGEX }
+
+  has_many :devices, dependent: :destroy
   
   class << self
     def bcrypt(password)
