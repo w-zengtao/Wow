@@ -1,4 +1,7 @@
-FactoryGirl.define do  
+FactoryGirl.define do  factory :location do
+    position ""
+  end
+  
   factory :post do
     location ""
     content "MyText"

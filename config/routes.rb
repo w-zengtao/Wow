@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       end
       resources :user_tokens, only: [:create, :destroy]
       resources :devices, only: [:index, :show, :create, :update, :destroy]
+
+      resources :posts, only: [:create, :update, :destroy, :show, :index]
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
