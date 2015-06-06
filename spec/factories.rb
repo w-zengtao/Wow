@@ -1,7 +1,15 @@
-FactoryGirl.define do  factory :device do
+FactoryGirl.define do  
+  factory :post do
+    location ""
+    content "MyText"
+    photo "MyString"
+    position "MyString"
+  end
+  
+  factory :device do
     os "MyString"
-version "MyString"
-device_token "MyString"
+    version "MyString"
+    device_token "MyString"
   end
  
   factory :user do
@@ -10,3 +18,4 @@ device_token "MyString"
     encrypted_password  "password"
   end
 end
+
