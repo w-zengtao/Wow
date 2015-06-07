@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
   
   factory :post do
-    content "MyText"
+    sequence(:content) { |n| "MyText#{n}" }
     photo "MyString"
     position "MyString"
 

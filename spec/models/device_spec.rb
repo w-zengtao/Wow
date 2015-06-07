@@ -1,7 +1,4 @@
 require 'rails_helper'
-      # t.string :os
-      # t.string :version
-      # t.string :device_token
 
 RSpec.describe Device, type: :model do
   before do 
