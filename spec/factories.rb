@@ -3,7 +3,7 @@ FactoryGirl.define do  factory :location do
   end
   
   factory :post do
-    location ""
+    # location ""
     content "MyText"
     photo "MyString"
     position "MyString"
