@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
       Digest::SHA1.hexdigest(password)
     end
   end
+
+  def posts
+    Post.where id: self.post_ids
+  end
   
   private
   

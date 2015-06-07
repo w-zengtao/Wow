@@ -14,6 +14,12 @@ RSpec.describe Post, type: :model do
     @location.posts << @post
     expect(@post.location).to be @location
   end 
+
+  it "should always contain position" do 
+    @post.position = ''
+
+    expect(@post).to be_invalid
+  end
   
   # it { should belongs_to(:user)} 打算用pg的Array来写这个吧
 end
