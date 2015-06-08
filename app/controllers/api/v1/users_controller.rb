@@ -55,7 +55,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   
   def user_params
     _params.require(:user).permit(:email, :encrypted_password, :nickname, :avatar)
-    _params[:avatar] = parse_image_data(_params[:avatar]) if _params[:avatar]
+    _params[:user][:avatar] = parse_image_data(_params[:user][:avatar]) if _params[:user[:avatar]
     _params
   end
 

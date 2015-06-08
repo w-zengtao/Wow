@@ -61,6 +61,9 @@ class Api::V1::PostsController < Api::V1::BaseController
     else 
       render json: @post.errors, status: 400
     end
+
+  ensure
+    clean_tempfile
   end
 
   # 必须是当前用户自己的post
@@ -91,6 +94,8 @@ class Api::V1::PostsController < Api::V1::BaseController
   end
   
   def post_params
-    params.require(:post).permit(:content ,:photo, :position)
+    _params.require(:post).permit(:content ,:photo, :position)
+    _params[:post][:photo] = parse_image_data(_params[:post][:photo]) if _params[:post][:photo]
+    _params
   end
 end
