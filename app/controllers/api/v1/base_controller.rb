@@ -25,4 +25,31 @@ class Api::V1::BaseController < ApplicationController
   def current_user
     @current_user
   end
+
+  def parse_image_data(base64_image)
+    filename = "upload-image"
+    in_content_type, encoding, string = base64_image.split(/[:;,]/)[1..3]
+
+    @tempfile = Tempfile.new(filename)
+    @tempfile.binmode
+    @tempfile.write Base64.decode64(string)
+    @tempfile.rewind
+
+    content_type = `file --mime -b #{@tempfile.path}`.split(";")[0]
+    extension = content_type.match(/gif|jpeg|png/).to_s
+    filename += ".#{extension}" if extension
+
+    ActionDispatch::Http::UploadedFile.new({
+      tempfile: @tempfile,
+      content_type: content_type,
+      filename: filename
+    })
+  end
+
+  def clean_tempfile
+    if @tempfile
+      @tempfile.close
+      @tempfile.unlink
+    end
+  end
 end

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: EMAIL_REGEX }
 
   has_many :devices, dependent: :destroy
+  mount_uploader :avatar, AvatarUploader
   
   class << self
     def bcrypt(password)

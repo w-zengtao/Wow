@@ -29,6 +29,8 @@ class Api::V1::UsersController < Api::V1::BaseController
     else 
       render json: @user.errors, status: 400
     end
+  ensure
+    clean_tempfile
   end
 
   # PATCH/PUT
@@ -50,8 +52,11 @@ class Api::V1::UsersController < Api::V1::BaseController
   def set_user
     @user = User.find_by(id: params[:id])
   end
+  
   def user_params
-    params.require(:user).permit(:email, :encrypted_password, :nickname)
+    _params.require(:user).permit(:email, :encrypted_password, :nickname, :avatar)
+    _params[:avatar] = parse_image_data(_params[:avatar]) if _params[:avatar]
+    _params
   end
 
 end
