@@ -34,5 +34,8 @@ module Wow
     def pepper
       pepper = "d142367154e5beacca404b1a6a4f8bc52c6fdcfa3ccc3cf8eb49f3458a688ee6ac3b9fae488432a3bfca863b8a90008368a9f3a3dfbe5a962e64b6ab8f3a3a1a"
     end
+    def ak
+      ak = 'Z2n0xhSAvdEa6vXlzQz01pBp'
+    end
   end
 end
