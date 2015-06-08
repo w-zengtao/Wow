@@ -1,6 +1,5 @@
 class Location < ActiveRecord::Base
 
-  include ApplicationHelper
   require 'net/http'
 
   has_many :posts
@@ -28,7 +27,7 @@ class Location < ActiveRecord::Base
       http.request(req)
     end
 
-    res = res.to_utf8
-    self.content = res.body.to_s.split('formatted_address')[1].split('"')[2].to_s
+    res = res.body.to_s
+    self.content = res.split('formatted_address')[1].split('"')[2].to_s
   end
 end
