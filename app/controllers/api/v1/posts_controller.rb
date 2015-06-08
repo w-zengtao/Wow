@@ -11,6 +11,14 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: @posts
   end
 
+  def show
+    if @post
+      render json: @post, status: 200
+    else
+      render json: { error: "Does not exist" }, status: 404
+    end
+  end
+
   def create
 
     lon = params[:post][:location][:x]
@@ -29,6 +37,20 @@ class Api::V1::PostsController < Api::V1::BaseController
       current_user.save!
     else 
       render json: @post.errors, status: 400
+    end
+  end
+
+  # 必须是当前用户自己的post
+  def update
+    tag = current_user.post_ids.include?(@post.id)
+    if tag
+      if @post.update(post_params)
+        render json: @post, status: 201
+      else
+        render json: @post.errors, status: 400
+      end
+    else 
+      render json: { error: "You can only update your post" }
     end
   end
 
