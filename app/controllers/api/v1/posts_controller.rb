@@ -2,7 +2,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   respond_to :json
 
-  before_action :authenticate_user_from_token!, only: [:update, :destroy, :create, :user_posts]
+  before_action :authenticate_user_from_token!, only: [:update, :destroy, :create, :user_posts, :dis_posts]
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
@@ -21,6 +21,17 @@ class Api::V1::PostsController < Api::V1::BaseController
     else
       render json: { error: "user(id = #{params[:user_id]}) not found" , status:404 } 
     end
+  end
+
+  def dis_posts
+    dis = params[:distance].to_i
+    @locations = self.location.locations_by_dis dis
+
+    @locations.each do |location|
+      @posts << location.posts
+    end
+
+    render json: @posts
   end
 
   def show

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:create, :update, :destroy, :show, :index] do
         collection do 
           get :user_posts
+          get :dis_posts
         end
       end
 
