@@ -11,7 +11,13 @@ Rails.application.routes.draw do
       resources :user_tokens, only: [:create, :destroy]
       resources :devices, only: [:index, :show, :create, :update, :destroy]
 
-      resources :posts, only: [:create, :update, :destroy, :show, :index]
+      resources :posts, only: [:create, :update, :destroy, :show, :index] do
+        collection do 
+          get :user_posts
+        end
+      end
+
+      resources :locations, only: [:index]
     end
   end
   

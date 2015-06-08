@@ -20,6 +20,18 @@ RSpec.describe Api::V1::PostsController, type: :controller do
     end
   end
 
+  describe "GET 'user_posts'" do 
+    it "need a user_id" do 
+      User.destroy_all
+      user = FactoryGirl.create(:user)
+
+      get :user_posts, { user_id: '', token: user.auth_token }
+      parsed_response = JSON.parse(response.body)
+
+      expect(parsed_response['status']).to eq(404)
+    end
+  end
+
   describe "POST 'create'" do
     it "should increase Post's count" do 
       count = Post.count

@@ -2,7 +2,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   respond_to :json
 
-  before_action :authenticate_user_from_token!, only: [:update, :destroy, :create]
+  before_action :authenticate_user_from_token!, only: [:update, :destroy, :create, :user_posts]
   before_action :set_post, only: [:show, :update, :destroy]
 
   def index
@@ -11,11 +11,23 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: @posts
   end
 
+  def user_posts
+    @user = User.find_by(id: params[:user_id])
+
+    # 查看用户所有的posts
+    if @user
+      @posts = @user.posts
+      render json: @posts, status: 200
+    else
+      render json: { error: "user(id = #{params[:user_id]}) not found" , status:404 } 
+    end
+  end
+
   def show
     if @post
       render json: @post, status: 200
     else
-      render json: { error: "Does not exist" }, status: 404
+      render json: { error: "Does not exist" , status: 404 }
     end
   end
 
