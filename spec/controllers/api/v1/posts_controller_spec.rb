@@ -23,8 +23,21 @@ RSpec.describe Api::V1::PostsController, type: :controller do
   describe "POST 'create'" do
     it "should increase Post's count" do 
       count = Post.count
-      post :create, { post: { content: "post content ", position: "post position", photo: "post photo", location: { x: 1.1111111, y: 1.1111111 } } }
+      User.destroy_all
+      user = FactoryGirl.create(:user)
+      post :create, { post: { content: "post content ", position: "post position", photo: "post photo", location: { x: 1.1111111, y: 1.1111111 } }, token: User.first.auth_token }
     
+      expect(count).to eq(Post.count - 1)
+    end
+  end
+
+  describe "DELETE 'destroy'" do 
+    it "should decrease Post's count" do 
+      FactoryGirl.create(:post)
+      count = Post.count 
+      delete :destroy, {id: Post.first.id, token: User.first.auth_token }
+
+      expect(count).to eq(Post.count + 1)
     end
   end
 end
